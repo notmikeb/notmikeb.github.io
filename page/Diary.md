@@ -5,3 +5,5 @@ description: "Diary Records"
 group: navigation
 ---
 {% include JB/setup %}
+
+{}
