@@ -1,0 +1,373 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Browser History Timeline</title>
+<style type="text/css" media="all">
+body {
+	margin: 0;
+	padding: 2em 1em;
+	background: rgb(88%,88%,88%);
+	font: 1em/1 Cochin, Georgia, serif;
+}
+h3 {
+	margin: 1.5em 0 0;
+}
+ul {
+	margin: 0.25em 0 0;
+	padding: 0 0 0 1.25em;
+}
+
+#timeline {
+	font-size: 87.5%;
+	margin-left: -1.5em;
+}
+#timeline, #timeline * {
+	display: block;
+}
+#timeline thead tr {
+	position: relative;
+	z-index: 1;
+	height: 1.5em;
+	border-bottom: 2px solid gray;
+}
+#timeline thead th {
+	top: 0;
+	height: 29em;
+	border-right: 1px dotted #CCC;
+}
+#timeline thead th.end {
+	border-right: none;
+	width: 5em;
+	height: 0;
+}
+#timeline thead th p {
+	border-right: 3px solid gray;
+	margin: 0 -3px 0 0;
+	padding: 0.15em 0 0.25em;
+}
+#timeline thead th:hover {
+	background: #FEE;
+	color: #633;
+	border: 1px solid #966;
+	margin: -1px 0 0 -1px;
+}
+#timeline thead th:hover p {
+	border-right: none;
+	margin-right: 0;
+}
+
+#timeline tbody tr,
+#timeline tbody th,
+#timeline tbody td {height: 3.333em;}
+
+#timeline tbody {
+	background: #EEE;
+	border-bottom: 1px solid gray;
+	padding: 1.5em 0;
+}
+#timeline tbody tr {
+	position: relative;
+	z-index: 2;
+	border-width: 1px 0;
+	padding-bottom: 0.1667em;
+	background: url(/assets/line.png) center repeat-x;
+}
+#timeline tbody tr:hover {
+	background-color: #FFE;
+}
+#timeline th, #timeline td {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	width: 20em;
+}
+#timeline tbody th {
+	width: 5em;
+}
+#timeline tbody td {
+	text-align: center;
+}
+
+#timeline {width: 300em;} //add: yellow background
+#timeline .y2007 {left: 0em;}
+#timeline .y2008 {left: 10em;}
+#timeline .y2009 {left: 30em;}
+#timeline .y2010 {left: 50em;}
+#timeline .y2011 {left: 70em;}
+#timeline .y2012 {left: 90em; width:20em;}
+#timeline .y2013 {left: 110em; width:20em;}
+#timeline .y2014 {left: 130em; width:20em;}
+#timeline .y2015 {left: 150em; width:20em;}
+#timeline .y2016 {left: 170em; width:20em;}
+#timeline .y2017 {left: 190em; width:20em;}
+#timeline .y2018 {left: 210em; width:20em;}
+#timeline .y2019 {left: 230em; width:20em;} //add: year column
+ 
+
+#timeline tbody th.end {left: 225em;}
+
+#timeline thead th.y2010 {border-right: none;}
+#timeline thead .y2019 p {border-right-color: transparent;}
+#timeline tbody th, #timeline tbody .y2019 {border-right: none;}
+
+#timeline tbody th img {
+	position: absolute;
+	top: 50%;
+	left: 20%;
+	height: 40px;
+	width: 140px;
+	margin: -20px 0 0 -20px;
+}
+#timeline tbody td p {
+	position: absolute;
+	top: 50%;
+	width: 2.1em;
+	margin: -5px 0 0 -1em;
+	text-indent: -1px;
+	padding-top: 10px;
+	background: url(/assets/dot.png) 50% 2px no-repeat;
+	color: #666;
+}
+#timeline tbody td p.flip {
+	top: auto; bottom: 50%;
+	margin:  0 0 -4px -1em;
+	padding: 0 0 8px;
+	background-position: 50% 100%;
+}
+
+#timeline tbody td p[title~="Discontinued"] {
+	color: #999;
+	margin: -0.9em 0 0 -0.25em;
+	background: url(/assets/terminator.gif) 2px 50% no-repeat;
+	padding: 0.33em 0 0.33em 1px;
+}
+#timeline tbody td p[title*="stimated"] {
+	background-image: url(/assets/dot-est.png);
+	color: #AAA;
+}
+#timeline tbody td p:hover {
+	background-color: #FEE;
+	outline: 1px solid #966;
+	color: #633;
+	cursor: default;
+	z-index: 100;
+}
+
+#timeline p[title~="January"]   {left: 6%;}
+#timeline p[title~="February"]  {left: 14%;}
+#timeline p[title~="March"]     {left: 22%;}
+#timeline p[title~="April"]     {left: 30%;}
+#timeline p[title~="May"]       {left: 38%;}
+#timeline p[title~="June"]      {left: 46%;}
+#timeline p[title~="July"]      {left: 54%;}
+#timeline p[title~="August"]    {left: 62%;}
+#timeline p[title~="September"] {left: 70%;}
+#timeline p[title~="October"]   {left: 78%;}
+#timeline p[title~="November"]  {left: 86%;}
+#timeline p[title~="December"]  {left: 94%;}
+
+/*#timeline tr[title="Chrome"] td.y2010 p[title~="September"] {text-indent: -0.5em;}*/
+
+
+tr[title="Internet Explorer for Windows"] {z-index: 70;}
+tr[title="Internet Explorer for Macintosh"] {z-index: 60;}
+tr[title="Opera"] {z-index: 50;}
+tr[title="Netscape Navigator"] {z-index: 40;}
+tr[title="Firefox"] {z-index: 30;}
+tr[title="Safari"] {z-index: 20;}
+tr[title="Chrome"] {z-index: 10;}
+
+tr[title="Internet Explorer for Windows"] th.end {
+	background: url(icons/msie-win.png) center no-repeat;}
+tr[title="Internet Explorer for Macintosh"] th.end {
+	background: url(icons/msie-mac.png) center no-repeat;}
+tr[title="Opera"] th.end {
+	background: url(icons/opera.png) center no-repeat;}
+tr[title="Netscape Navigator"] th.end {
+	background: url(icons/netscape.png) center no-repeat;}
+tr[title="Firefox"] th.end {
+	background: url(icons/firefox.png) center no-repeat;}
+tr[title="Safari"] th.end {
+	background: url(icons/safari.png) center no-repeat;}
+tr[title="Chrome"] th.end {
+	background: url(icons/chrome.png) center no-repeat;}
+
+#timeline tr[title="Internet Explorer for Macintosh"] {width: 79.8em;}
+#timeline tr[title="Netscape Navigator"] {width: 126.4em;}
+
+
+/* IE7 hacks */
+
+*+html #timeline thead th {
+	vertical-align: top;
+}
+*+html #timeline + h3 {
+	margin-top: 20em;
+}
+
+</style>
+</head>
+<body>
+
+
+<table id="timeline" summary="A timeline of browser version releases from mid-1996 through the end of 2013">
+
+<thead>
+<tr>
+<th scope="col" class="end"></th>
+<th scope="col" class="y2008"><p>2008</p></th>
+<th scope="col" class="y2009"><p>2009</p></th>
+<th scope="col" class="y2010"><p>2010</p></th>
+<th scope="col" class="y2011"><p>2011</p></th>
+<th scope="col" class="y2012"><p>2012</p></th>
+<th scope="col" class="y2013"><p>2013</p></th>
+<th scope="col" class="y2014"><p>2014</p></th>
+<th scope="col" class="y2015"><p>2015</p></th>
+<th scope="col" class="y2016"><p>2016</p></th>
+<th scope="col" class="y2017"><p>2017</p></th>
+<th scope="col" class="y2018"><p>2018</p></th>
+<th scope="col" class="y2019"><p>2019</p></th>
+
+<th scope="col" class="end"></th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr title="Chrome">
+<th scope="row"><img src="icons/chrome.png" alt="Chrome"></th>
+<td class="y1996 n"></td>
+<td class="y1997 n"></td>
+<td class="y1998 n"></td>
+<td class="y1999 n"></td>
+<td class="y2000 n"></td>
+<td class="y2001 n"></td>
+<td class="y2002 n"></td>
+<td class="y2003 n"></td>
+<td class="y2004 n"></td>
+<td class="y2005 n"></td>
+<td class="y2006 n"></td>
+<td class="y2007 n"></td>
+<td class="y2008"><p title="December 2008"></p></td>
+<td class="y2009"><p title="May 2009"></p><p title="September 2009"></p></td>
+<td class="y2010"></td>
+<td class="y2014">
+	<p title="January 2014">201401</p>
+	<p title="Estimated February 2014" class="flip">201402</p>
+    <p title="March 2014">201403</p>
+	<p title="Estimated May 2014">201405</p>
+</td>
+<td class="y2015"></td>
+
+<td class="y2016"></td>
+<td class="y2017"></td>
+<td class="y2018"></td>
+<td class="y2019"></td>
+<th class="end"></th>
+</tr>
+
+<tr title="M-eat">
+<th scope="row"><img src="icons/safari.png" alt="m-eat"></th>
+<td class="y2008"></td>
+<td class="y2009"></td>
+<td class="y2010"></td>
+<td class="y2011"><p title="December 2011">彭園 1229</p></td>
+<td class="y2012"></td>
+<td class="y2013"></td>
+<td class="y2014"></td>
+<td class="y2015"></td>
+<td class="y2016"></td>
+<td class="y2017"></td>
+<td class="y2018"></td>
+<td class="y2019"></td>
+<th class="end"></th>
+</tr>
+
+<tr title="business travel">
+<th scope="row"><img src="icons/safari.png" alt="buiztrip"></th>
+<td class="y2008"></td>
+<td class="y2009"></td>
+<td class="y2010"></td>
+<td class="y2011"><p title="June 2011">chengdu</p></td>
+<td class="y2012"><p title="September 2012">深圳 shenzhen 20120923~0929</p></td>
+<td class="y2013"><p title="May 2013">chengdu</p></td>
+<td class="y2014"></td>
+<td class="y2015"><p title="June 2015">chengdu</p></td>
+<td class="y2016"></td>
+<td class="y2017"></td>
+<td class="y2018"></td>
+<td class="y2019"></td>
+<th class="end"></th>
+</tr>
+
+<tr title="personal travel">
+<th scope="row"><img src="icons/safari.png" alt="mytrip"></th>
+<td class="y2008"></td>
+<td class="y2009"></td>
+<td class="y2010"></td>
+<td class="y2011"><p title="August 2011">hongkong 海洋公園</p></td>
+<td class="y2013"></td>
+<td class="y2014"></td>
+<td class="y2015"></td>
+<td class="y2016"></td>
+<td class="y2017"></td>
+<td class="y2018"></td>
+<td class="y2019"></td>
+<th class="end"></th>
+</tr>
+
+<!--
+20120124 南投沙雕 竹南天梯
+20120218 sh got merried
+20120226 眼睛雷射
+20120401 蒸民got merried
+20120427 mtk eat at 維多利亞
+20120513 family 松柏嶺餐廳
+20120526 福隆沙雕
+20120620 mtk microsoft 開發者大會
+20120629 mtk 美麗華 八海
+20120714 young 馨的吃到飽    
+20120804 family 南投小牧口
+20120915 personal 日月潭泳渡
+20120923 深圳
+20121107 mtk 信義 melange cafe
+20121108 family 姊大女兒
+20121227 mtk 食養山房
+20121230 family 姊大女兒 滿月
+!-->
+<tr title="personal">
+<th scope="row"><img src="icons/safari.png" alt="personal"></th>
+<td class="y2008"><p title="March 2008">M-OS-BU</p></td>
+<td class="y2009"></td>
+<td class="y2010"></td>
+<td class="y2011"></td>
+<td class="y2012"><p title="January 2012">20120106點痣</p></td>
+<td class="y2013"></td>
+<td class="y2014"></td>
+<td class="y2015"></td>
+<td class="y2016"></td>
+<td class="y2017"></td>
+<td class="y2018"></td>
+<td class="y2019"></td>
+<th class="end"></th>
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+<h3>Sources</h3>
+<ul>
+<li><a href="http://meyerweb.com/eric/browsers/timeline-structured.html">http://meyerweb.com/eric/browsers/timeline-structured.html</a></li>
+</ul>
+
+<h3>Sources Discuss</h3>
+<ul>
+<li><a href="http://meyerweb.com/eric/thoughts/2008/01/21/structured-timeline/">http://meyerweb.com/eric/thoughts/2008/01/21/structured-timeline/</a></li>
+</ul>
+
+</body></html>
