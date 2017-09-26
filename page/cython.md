@@ -51,8 +51,33 @@ cdef int mycalclen(char *name, void *f):
     return l
 ```
 
+### string array sample 
+
+* from python-list to char**
+https://stackoverflow.com/questions/17511309/fast-string-array-cython
+```
+from cpython.string cimport PyString_AsString
+cdef char ** to_cstring_array(list_str):
+    cdef char **ret = <char **>malloc(len(list_str) * sizeof(char *))
+    for i in xrange(len(list_str)):
+        ret[i] = PyString_AsString(list_str[i])
+    return ret
+```
+
+if missing 'from cpython.string import PyString_AsString', 
+only got the wrong message
+```
+gap_if.pyx:31:34: Storing unsafe C derivative of temporary Python reference
+```
+
+* where is the PyString_AsString
+https://mail.python.org/pipermail/python-list/2009-March/527813.html
+
 ### Misc
-1. reference count problem
 2. string buffer example
 3. lifetime example
-    
+4. how to design interface - structure for a few information    
+5. https://github.com/karulis/pybluez/blob/master/msbt/_msbt.c
+
+### QnA
+1. reference count problem => see generate .c files
