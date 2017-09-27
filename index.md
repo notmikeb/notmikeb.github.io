@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Hello World!
+title: MikeChen Home
 tagline: Supporting tagline
 ---
 {% include JB/setup %}
@@ -25,3 +25,11 @@ We need to clean up the themes, make theme usage guides with theme-specific mark
 ### Timeline
 
 [/page/mytimeline.html](/page/mytimeline.html)
+
+### Pages
+
+
+<ul>
+{% assign pages_list = site.pages %}  
+{% include JB/pages_list %}
+</ul>

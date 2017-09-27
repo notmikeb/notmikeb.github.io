@@ -5,6 +5,9 @@ description: ""
 ---
 {% include JB/setup %}
 
+### cython good tutorial
+[https://nyu-cds.github.io/python-cython/](https://nyu-cds.github.io/python-cython/)
+
 ### cython tutorial
 [http://apprize.info/python/cython/index.html](http://apprize.info/python/cython/index.html)
 
